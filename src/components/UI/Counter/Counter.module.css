@@ -1,0 +1,109 @@
+.paragraph {
+  text-align: center;
+}
+
+.counter-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  margin-top: 16px;
+}
+
+.btn {
+  background-position: center center;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  width: 60px;
+  height: 60px;
+
+  padding: 0;
+}
+.btn:not(:disabled):hover svg path {
+  transition: all var(--transition-duration) ease-in;
+  fill: var(--accent-color);
+  stroke: var(--accent-color);
+}
+.btn:not(:disabled):hover svg circle {
+  transition: all var(--transition-duration) ease-in;
+  stroke: var(--accent-color);
+}
+
+.btn:disabled svg {
+  opacity: 50%;
+  cursor: auto;
+}
+
+.input {
+  width: 118px;
+  height: 76px;
+
+  background: none;
+  box-sizing: border-box;
+  border: 4px solid var(--dark-color);
+  border-radius: 10px;
+
+  color: var(--dark-color);
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 122%;
+  text-align: center;
+  transition: all var(--transition-duration) ease-in;
+  outline: none;
+}
+
+.input:disabled {
+  pointer-events: none;
+  opacity: 50%;
+}
+
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}
+
+.input:not(:disabled):hover,
+.input:not(:disabled):focus {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+  .paragraph {
+    font-size: clamp(1.125rem, 0.529rem + 2.54vw, 1.75rem);
+    line-height: clamp(1.375rem, 0.779rem + 2.54vw, 2rem);
+  }
+
+  .counter-wrapper {
+    gap: clamp(0.75rem, 0.511rem + 1.02vw, 1rem);
+    margin-top: clamp(0.75rem, 0.511rem + 1.02vw, 1rem);
+  }
+
+  .input {
+    width: clamp(5.5rem, 3.711rem + 7.63vw, 7.375rem);
+    height: clamp(3.25rem, 1.819rem + 6.11vw, 4.75rem);
+
+    border-width: clamp(0.125rem, 0.006rem + 0.51vw, 0.25rem);
+    font-size: clamp(1.5rem, 0.784rem + 3.05vw, 2.25rem);
+    line-height: clamp(1.75rem, 0.796rem + 4.07vw, 2.75rem);
+  }
+
+  .btn {
+    width: clamp(2.5rem, 1.307rem + 5.09vw, 3.75rem);
+    height: clamp(2.5rem, 1.307rem + 5.09vw, 3.75rem);
+  }
+  .btn-svg {
+    width: clamp(2.5rem, 1.307rem + 5.09vw, 3.75rem);
+    height: clamp(2.5rem, 1.307rem + 5.09vw, 3.75rem);
+  }
+  .btn-svg circle {
+    stroke-width: clamp(0.125rem, 0.006rem + 0.51vw, 0.25rem);
+  }
+  .btn-svg path {
+    stroke-width: clamp(0.5px, 0.001rem + 0.13vw, 1px);
+  }
+}

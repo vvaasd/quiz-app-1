@@ -1,0 +1,17 @@
+# QuizApp 1 (React SPA with pseudo-routing)
+
+Deployed [here, on netify](https://vvaasd-weather-app-1.netlify.app) (Github Pages do not support dynamic sites)
+
+Stack: React, HTML5, CSS, JS
+Builder: Vite
+
+- Used hooks: useState, useEffect, useContext, useRef, useReducer and React.memo (a bit)
+- Created custom React hook useKeyDown
+- Pseudo-routing (3 pages)
+- Work with data (fake API)
+- Responsive Pixel Perfect layout (clamp() + media queries)
+- Modular CSS
+
+App using fake loading, everything work fast without fake loading
+
+Within this project, trying to simulate real conditions, I completed technical tasks assigned to me and pushed them to remote repository (GitLab).

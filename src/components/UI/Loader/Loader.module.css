@@ -1,0 +1,67 @@
+.loader {
+  width: 96px;
+  height: 24px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.dot-wrapper {
+  position: relative;
+
+  width: 14px;
+  height: 15px;
+}
+
+.dot {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  animation: dotDance;
+  animation-duration: 0.6s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.loader .dot-wrapper:nth-child(2n) .dot {
+  animation-delay: 0.2s;
+}
+
+.loader .dot-wrapper:nth-child(3n) .dot {
+  animation-delay: 0.4s;
+}
+
+@keyframes dotDance {
+  0% {
+    bottom: 0;
+  }
+  60% {
+    bottom: 0;
+  }
+  100% {
+    bottom: 2px;
+  }
+}
+
+@media (max-width: 768px) {
+  .loader {
+    width: clamp(3.375rem, 0.87rem + 10.69vw, 6rem);
+    height: clamp(1.125rem, 0.767rem + 1.53vw, 1.5rem);
+
+    gap: clamp(0.75rem, 0.511rem + 1.02vw, 1rem);
+  }
+
+  .dot-wrapper {
+    width: clamp(0.625rem, 0.386rem + 1.02vw, 0.875rem);
+    height: clamp(0.875rem, 0.756rem + 0.51vw, 1rem);
+  }
+
+  .dot {
+    width: clamp(0.625rem, 0.386rem + 1.02vw, 0.875rem);
+    height: clamp(0.625rem, 0.386rem + 1.02vw, 0.875rem);
+  }
+}

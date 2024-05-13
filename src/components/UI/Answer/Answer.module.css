@@ -1,0 +1,11 @@
+.answers-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .answers-wrapper {
+    gap: clamp(0.5rem, 0.023rem + 2.04vw, 1rem);
+  }
+}
