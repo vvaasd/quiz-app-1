@@ -12,6 +12,6 @@ Builder: Vite
 - Responsive Pixel Perfect layout (clamp() + media queries)
 - Modular CSS
 
-App using fake loading, everything work fast without fake loading
+App using fake loading, everything work fast without fake loading (depends on this free hosting, also the flag images are taken from the wiki - there may be a delay)
 
 Within this project, trying to simulate real conditions, I completed technical tasks assigned to me and pushed them to remote repository (GitLab).
