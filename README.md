@@ -1,6 +1,6 @@
 # QuizApp 1 (React SPA with pseudo-routing)
 
-Deployed [here, on netify](https://vvaasd-weather-app-1.netlify.app) (Github Pages do not support dynamic sites)
+Deployed [here, on netify](https://vvaasd-quiz-app-1.netlify.app) (Github Pages do not support dynamic sites)
 
 Stack: React, HTML5, CSS, JS
 Builder: Vite
