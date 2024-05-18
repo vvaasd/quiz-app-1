@@ -2,7 +2,7 @@
 
 Deployed [here, on netify](https://vvaasd-quiz-app-1.netlify.app) (Github Pages do not support dynamic sites)
 
-Stack: React, HTML5, CSS, JS
+Stack: React, JS, HTML5, CSS.
 Builder: Vite
 
 - Used hooks: useState, useEffect, useContext, useRef, useReducer and React.memo (a bit)
