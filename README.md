@@ -8,7 +8,7 @@ Builder: Vite
 - Used hooks: useState, useEffect, useContext, useRef, useReducer and React.memo (a bit)
 - Created custom React hook useKeyDown
 - Pseudo-routing (3 pages)
-- Work with data (fake API)
+- Work with mock data
 - Responsive Pixel Perfect layout (clamp() + media queries)
 - Modular CSS
 
