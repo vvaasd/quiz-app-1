@@ -15,3 +15,9 @@ Builder: Vite
 App using fake loading, everything work fast without fake loading (depends on this free hosting, also the flag images are taken from the wiki - there may be a delay)
 
 Within this project, trying to simulate real conditions, I completed technical tasks assigned to me and pushed them to remote repository (GitLab).
+
+How to run dev mode:
+- clone repository (main branch)
+Terminal commands (use it in cloned repository):
+- npm i
+- npm run dev
