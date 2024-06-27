@@ -2,7 +2,7 @@
 
 Deployed [here, on netify](https://vvaasd-quiz-app-1.netlify.app) (Github Pages do not support dynamic sites)
 
-Stack: React, JS, HTML, CSS.
+Stack: **React**, JS, HTML, CSS.
 Builder: Vite
 
 - Used hooks: useState, useEffect, useContext, useRef, useReducer and React.memo (a bit)
@@ -16,7 +16,7 @@ App using fake loading, everything work fast without fake loading (depends on th
 
 Within this project, trying to simulate real conditions, I completed technical tasks assigned to me and pushed them to remote repository (GitLab).
 
-How to run dev mode:
+How to run dev mode (Node required):
 - clone repository (main branch).
 Terminal commands (use it in cloned repository):
 - npm i
