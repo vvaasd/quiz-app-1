@@ -17,7 +17,7 @@ App using fake loading, everything work fast without fake loading (depends on th
 Within this project, trying to simulate real conditions, I completed technical tasks assigned to me and pushed them to remote repository (GitLab).
 
 How to run dev mode:
-- clone repository (main branch)
+- clone repository (main branch).
 Terminal commands (use it in cloned repository):
 - npm i
 - npm run dev
