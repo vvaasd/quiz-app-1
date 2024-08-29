@@ -1,5 +1,5 @@
 import { getEndingByNumber } from '@/utils';
-import { Button } from '@/components/UI/Button/Button';
+import { Button } from '@/components/Button/Button';
 import { PageContext } from '@/context/PageContext';
 import { useKeyDown } from '@/hooks';
 import { useContext, useRef } from 'react';
