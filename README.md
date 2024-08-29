@@ -21,3 +21,7 @@
 2) Use this terminal commands cloned repository:
   - npm i
   - npm run dev
+
+# README.md
+
+- en [English](https://github.com/vvaasd/quiz-app-1/blob/main/README-EN.md)

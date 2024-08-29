@@ -21,3 +21,7 @@ How to run dev mode (Node required):
 2) Use this terminal commands cloned repository:
   - npm i
   - npm run dev
+  
+# README.md
+
+- ru [Русский](https://github.com/vvaasd/quiz-app-1/blob/main/README.md)
