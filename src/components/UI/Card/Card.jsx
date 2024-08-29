@@ -1,4 +1,4 @@
-import pages from '@/constants/PAGESs.js';
+import pages from '@/constants/PAGES.js';
 
 import { Welcome, Questions, Result } from '@/pages';
 import styles from './Card.module.css';
