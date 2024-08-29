@@ -46,7 +46,7 @@ export const Welcome = () => {
         max={MAX_QUESTIONS_COUNT}
         value={counterValue}
         onChange={setCounterValue}
-        disabled={isLoading}
+        isDisabled={isLoading}
       />
       <Button
         ref={btnRef}
