@@ -1,48 +1,38 @@
-import Paragraph from '@/components/UI/Paragraph/Paragraph';
+import { PlusSvg, MinusSvg } from '@/components';
 import styles from './Counter.module.css';
 
-import PlusSvg from '@/components/Svg/PlusSvg';
-import MinusSvg from '@/components/Svg/MinusSvg';
-
-function Counter({ max, value, dispatch, isDisabled }) {
-  function inputHandler(inputValue) {
+export const Counter = ({ max, onChange, value, isDisabled }) => {
+  const handleInput = (inputValue) => {
     if (inputValue >= max) {
-      dispatch({ type: 'set', value: max });
-      return;
+      onChange(max);
     } else if (inputValue === '') {
-      dispatch({ type: 'set', value: '' });
-      return;
-    } else if (inputValue < 1) {
-      return;
-    } else {
-      dispatch({ type: 'set', value: +inputValue });
+      onChange('');
+    } else if (inputValue >= 1) {
+      onChange(+inputValue);
     }
-  }
+  };
 
   return (
     <div>
-      <Paragraph className={styles['paragraph']}>
-        Выбери количество вопросов:
-      </Paragraph>
+      <p className={styles['paragraph']}>Выбери количество вопросов:</p>
       <div className={styles['counter-wrapper']}>
         <button
-          onMouseDown={() => dispatch({ type: 'decrement' })}
+          onMouseDown={() => handleInput(value - 1)}
           className={styles['btn']}
           disabled={value <= 1 || isDisabled}
         >
           <MinusSvg className={styles['btn-svg']} />
         </button>
         <input
-          name="counter"
           type="number"
           className={styles['input']}
-          onChange={(event) => inputHandler(event.target.value)}
-          onBlur={() => value === '' && inputHandler(1)}
+          onChange={(event) => handleInput(event.target.value)}
+          onBlur={() => value === '' && handleInput(1)}
           value={value}
           disabled={isDisabled}
         />
         <button
-          onMouseDown={() => dispatch({ type: 'increment' })}
+          onMouseDown={() => handleInput(value + 1)}
           className={styles['btn']}
           disabled={value >= max || isDisabled}
         >
@@ -51,6 +41,4 @@ function Counter({ max, value, dispatch, isDisabled }) {
       </div>
     </div>
   );
-}
-
-export default Counter;
+};

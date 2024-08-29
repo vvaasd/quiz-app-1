@@ -1,50 +1,33 @@
-import pages from '@/constants/pages';
-import generateQuizFrom from '@/utils/generateQuizFrom';
-
-import welcomeImg from '@/assets/welcome-img.svg';
-
-import Paragraph from '@/components/UI/Paragraph/Paragraph';
-import Title from '@/components/UI/Title/Title';
-import Counter from '@/components/UI/Counter/Counter';
-import Button from '@/components/UI/Button/Button';
+import welcomeImg from '@/assets/img/welcome-img.svg';
+import QUIZ_QUESTIONS_DATA from '@/data/quiz_questions.json';
+import { PAGES, MAX_QUESTIONS_COUNT } from '@/constants';
+import { generateQuizFrom } from '@/utils';
+import { Button, Counter } from '@/components';
+import { PageContext } from '@/context/PageContext';
+import { useContext, useRef, useState } from 'react';
+import { useKeyDown } from '@/hooks';
 import styles from './Welcome.module.css';
 
-import { useContext, useReducer, useRef } from 'react';
-import { PageContext } from '@/context/context';
-import useKeyDown from '@/hooks/useKeyDown';
-
-export const Welcome = ({
-  setQuestionsForQuiz,
-  maxQuestions,
-  quizData,
-  isPageLoading,
-  fakeLoad,
-}) => {
-  const { setPage } = useContext(PageContext);
+export const Welcome = () => {
+  const {
+    setPage,
+    fakeLoad,
+    isLoading,
+    setQuestionsForQuiz,
+    setQuestionsCount,
+  } = useContext(PageContext);
+  const [counterValue, setCounterValue] = useState(1);
   const btnRef = useRef(null);
 
-  function startQuiz() {
+  const startQuiz = () => {
     fakeLoad(() => {
-      setQuestionsForQuiz(generateQuizFrom(quizData, counterState.count));
-      setPage(pages.questions);
-    });
-  }
+      const generatedQuiz = generateQuizFrom(QUIZ_QUESTIONS_DATA, counterValue);
 
-  const [counterState, counterDispatch] = useReducer(counterReducer, {
-    count: 1,
-  });
-  function counterReducer(state, action) {
-    switch (action.type) {
-      case 'set':
-        return { ...state, count: action.value };
-      case 'increment':
-        return { ...state, count: state.count + 1 };
-      case 'decrement':
-        return { ...state, count: state.count - 1 };
-      default:
-        throw new Error();
-    }
-  }
+      setQuestionsForQuiz(generatedQuiz);
+      setQuestionsCount(generatedQuiz.length);
+      setPage(PAGES.questions);
+    });
+  };
 
   useKeyDown('Enter', () => {
     btnRef.current.click();
@@ -53,23 +36,23 @@ export const Welcome = ({
   return (
     <>
       <div className={styles['header']}>
-        <Title className={styles['title']}>Добро пожаловать</Title>
-        <Paragraph className={styles['description']}>
+        <h2 className={styles['title']}>Добро пожаловать</h2>
+        <p className={styles['description']}>
           на викторину по странам
           <br />и столицам!
-        </Paragraph>
+        </p>
       </div>
       <Counter
-        max={maxQuestions}
-        value={counterState.count}
-        dispatch={counterDispatch}
-        isDisabled={isPageLoading}
+        max={MAX_QUESTIONS_COUNT}
+        value={counterValue}
+        onChange={setCounterValue}
+        disabled={isLoading}
       />
       <Button
         ref={btnRef}
         onClick={startQuiz}
-        isDisabled={!counterState.count}
-        isLoading={isPageLoading}
+        isDisabled={!counterValue}
+        isLoading={isLoading}
       >
         Начать
       </Button>

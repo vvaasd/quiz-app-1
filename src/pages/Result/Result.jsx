@@ -1,30 +1,31 @@
-import getEndingByNumber from '@/utils/getEndingByNumber';
-
-import Title from '@/components/UI/Title/Title';
-import Paragraph from '@/components/UI/Paragraph/Paragraph';
-import Button from '@/components/UI/Button/Button';
+import { getEndingByNumber } from '@/utils';
+import { Button } from '@/components/UI/Button/Button';
+import { PageContext } from '@/context/PageContext';
+import { useKeyDown } from '@/hooks';
+import { useContext, useRef } from 'react';
 import styles from './Result.module.css';
 
-import { useContext, useRef } from 'react';
-import { PageContext } from '@/context/context';
-import useKeyDown from '@/hooks/useKeyDown';
-
-export const Result = ({ successAnswersCount, maxAnswersCount }) => {
-  const { resetQuiz } = useContext(PageContext);
+export const Result = () => {
+  const { resetQuiz, questionsCount, successAnswersCount } =
+    useContext(PageContext);
   const btnRef = useRef(null);
-  let errorAnswers = maxAnswersCount - successAnswersCount;
-
-  let questionWordEnding = getEndingByNumber(
+  const errorAnswersCount = questionsCount - successAnswersCount;
+  const questionWord = getEndingByNumber(
     successAnswersCount,
-    'ов',
-    '',
-    'а'
+    'вопросов',
+    'вопрос',
+    'вопроса'
   );
-  let errorWordEnding = getEndingByNumber(errorAnswers, 'ок', 'ку', 'ки');
+  const errorWord = getEndingByNumber(
+    errorAnswersCount,
+    'ошибок',
+    'ошибку',
+    'ошибки'
+  );
 
-  let resultDescription;
-  if (successAnswersCount === maxAnswersCount) {
-    resultDescription = (
+  let resultText;
+  if (successAnswersCount === questionsCount) {
+    resultText = (
       <>
         Ты ответил правильно
         <br />
@@ -32,7 +33,7 @@ export const Result = ({ successAnswersCount, maxAnswersCount }) => {
       </>
     );
   } else if (successAnswersCount === 0) {
-    resultDescription = (
+    resultText = (
       <>
         Ты не ответил ни на один вопрос.
         <br />
@@ -40,14 +41,14 @@ export const Result = ({ successAnswersCount, maxAnswersCount }) => {
       </>
     );
   } else {
-    resultDescription = (
+    resultText = (
       <>
         Ты ответил правильно
         <br />
-        на <span className={styles.success}>{successAnswersCount}</span> вопрос
-        {questionWordEnding} и сделал{' '}
-        <span className={styles.error}>{errorAnswers}</span> ошиб
-        {errorWordEnding}.
+        на <span className={styles.success}>{successAnswersCount}</span>&nbsp;
+        {questionWord} и сделал&nbsp;
+        <span className={styles.error}>{errorAnswersCount}</span>&nbsp;
+        {errorWord}.
       </>
     );
   }
@@ -60,10 +61,8 @@ export const Result = ({ successAnswersCount, maxAnswersCount }) => {
     <>
       <div className={styles['img']}></div>
       <div className={styles['header']}>
-        <Title className={styles['title']}>Результат</Title>
-        <Paragraph className={styles['description']}>
-          {resultDescription}
-        </Paragraph>
+        <h2 className={styles['title']}>Результат</h2>
+        <p className={styles['description']}>{resultText}</p>
       </div>
       <Button ref={btnRef} onClick={resetQuiz}>
         Попробовать еще

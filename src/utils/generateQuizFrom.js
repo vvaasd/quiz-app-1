@@ -1,4 +1,4 @@
-export default function generateQuizFrom(data, count) {
+export const generateQuizFrom = (data, count) => {
   const questionsFromData = data.questions
     .sort(() => Math.random() - 0.5)
     .slice(0, count);
@@ -40,4 +40,4 @@ export default function generateQuizFrom(data, count) {
   }
 
   return generatedQuiz;
-}
+};

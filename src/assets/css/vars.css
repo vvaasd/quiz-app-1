@@ -1,0 +1,13 @@
+:root {
+  --light-color: #f1f1ef;
+  --dark-color: #125365;
+  --dark-color-accent: #81a1a9;
+
+  --success: #2a8f55;
+  --error: #df4c25;
+
+  --accent-color: #ff9c46;
+  --accent-dim-color: #edd0b6;
+
+  --transition-duration: 0.1s;
+}

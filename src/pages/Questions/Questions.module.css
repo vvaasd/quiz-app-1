@@ -6,8 +6,8 @@
 
 .count {
   font-weight: 700;
-  font-size: 20px;
-  line-height: 120%;
+  font-size: clamp(0.875rem, 0.517rem + 1.53vw, 1.25rem);
+  line-height: clamp(1.125rem, 0.767rem + 1.53vw, 1.5rem);
   color: var(--dark-color);
 
   margin-bottom: 20px;
@@ -15,9 +15,6 @@
 
 @media (max-width: 768px) {
   .count {
-    font-size: clamp(0.875rem, 0.517rem + 1.53vw, 1.25rem);
-    line-height: clamp(1.125rem, 0.767rem + 1.53vw, 1.5rem);
-
     margin-bottom: 0;
   }
 }

@@ -1,8 +1,9 @@
-import RadioButton from '@/components/UI/Answer/RadioButton/RadioButton';
+import { RadioButton } from '@/components';
+import { useKeyDown } from '@/hooks';
+import React, { useRef } from 'react';
 import styles from './Answer.module.css';
 
-const Answers = ({
-  answersRefs,
+export const Answer = ({
   answers,
   onSelect,
   selectedAnswer,
@@ -10,21 +11,42 @@ const Answers = ({
   isAnswered,
   isDisabled,
 }) => {
-  const radioButtons = answers.map((answer, index) => (
-    <RadioButton
-      ref={answersRefs[index]}
-      key={index}
-      answerIndex={index + 1}
-      answerText={answer}
-      onSelect={onSelect}
-      isAnswered={isAnswered}
-      isDisabled={isDisabled}
-      isChecked={answer === selectedAnswer}
-      isCorrect={answer === correctAnswer}
-    />
-  ));
+  const answersRefs = useRef(
+    Array.from({ length: 4 }, () => React.createRef())
+  );
+  const currentAnswersRefs = answersRefs.current;
 
-  return <div className={styles['answers-wrapper']}>{radioButtons}</div>;
+  useKeyDown('1', () => {
+    currentAnswersRefs[0].current.click();
+  });
+
+  useKeyDown('2', () => {
+    currentAnswersRefs[1].current.click();
+  });
+
+  useKeyDown('3', () => {
+    currentAnswersRefs[2].current.click();
+  });
+
+  useKeyDown('4', () => {
+    currentAnswersRefs[3].current.click();
+  });
+
+  return (
+    <div className={styles['answers-wrapper']}>
+      {answers.map((answer, index) => (
+        <RadioButton
+          key={index}
+          ref={currentAnswersRefs[index]}
+          answerIndex={index + 1}
+          answerText={answer}
+          onSelect={onSelect}
+          isAnswered={isAnswered}
+          isDisabled={isDisabled}
+          isChecked={answer === selectedAnswer}
+          isCorrect={answer === correctAnswer}
+        />
+      ))}
+    </div>
+  );
 };
-
-export default Answers;

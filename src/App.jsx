@@ -1,74 +1,73 @@
-import pages from '@/constants/pages.js';
+import { PAGES } from '@/constants';
+import { Welcome, Questions, Result } from '@/pages';
+import { Header, Footer } from '@/components';
+import { PageContext } from '@/context/PageContext';
+import { useState } from 'react';
+import styles from './App.module.css';
 
-import Layout from '@/components/Layout/Layout.jsx';
-import Header from '@/components/Layout/Header/Header';
-import Footer from '@/components/Layout/Footer/Footer';
-import Card from '@/components/UI/Card/Card';
-
-import { useEffect, useState } from 'react';
-import { PageContext } from '@/context/context';
-
-function App() {
-  const [quizDataFromAPI, setQuizDataFromAPI] = useState([]);
-  const [hasHeaderCloseBtn, setHasHeaderCloseBtn] = useState(false);
-  const [currentPage, setCurrentPage] = useState(pages.welcome);
+export const App = () => {
+  const [currentPage, setCurrentPage] = useState(PAGES.welcome);
+  const [isLoading, setIsLoading] = useState(false);
+  const [questionsForQuiz, setQuestionsForQuiz] = useState([]);
+  const [questionsCount, setQuestionsCount] = useState(0);
   const [successAnswersCount, setSuccessAnswersCount] = useState(0);
-  const [isPageLoading, setIsPageLoading] = useState(true);
+  const [hasHeaderCloseBtn, setHasHeaderCloseBtn] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('quizz_questions.json');
-        if (!response.ok) {
-          throw new Error('Response is not ok');
-        }
+  const setPage = (pageName) => {
+    const withCloseBtn = pageName === PAGES.questions;
 
-        const dataFromAPI = await response.json();
-        setQuizDataFromAPI(dataFromAPI);
+    setHasHeaderCloseBtn(withCloseBtn);
+    setCurrentPage(pageName);
+  };
 
-        setTimeout(() => {
-          setIsPageLoading(false);
-        }, 1000);
-      } catch (error) {
-        console.error('Error fetching data: ', error);
-      }
-    };
-    fetchData();
-  }, []);
+  const incrementSuccessAnswersCount = () => {
+    setSuccessAnswersCount((prev) => prev + 1);
+  };
 
-  function successAnswersCountIncrementHandler() {
-    setSuccessAnswersCount(successAnswersCount + 1);
-  }
-
-  function resetQuiz() {
+  const resetQuiz = () => {
     setSuccessAnswersCount(0);
-    setPage(pages.welcome);
-  }
+    setPage(PAGES.welcome);
+  };
 
-  const setPage = (page) => {
-    if (page === pages.questions) {
-      setHasHeaderCloseBtn(true);
-    } else {
-      setHasHeaderCloseBtn(false);
-    }
-    setCurrentPage(page);
+  const fakeLoad = (action) => {
+    setIsLoading(true);
+
+    setTimeout(() => {
+      action();
+      setIsLoading(false);
+    }, 1500 + Math.random() * 500);
   };
 
   return (
-    <Layout>
-      <PageContext.Provider value={{ setPage, resetQuiz }}>
-        <Header hasCloseBtn={hasHeaderCloseBtn} onReset={resetQuiz} />
-        <Card
-          isPageLoading={isPageLoading}
-          currentPage={currentPage}
-          quizDataFromAPI={quizDataFromAPI}
-          incrementSuccessAnswersCount={successAnswersCountIncrementHandler}
-          successAnswersCount={successAnswersCount}
-        />
-        <Footer />
-      </PageContext.Provider>
-    </Layout>
+    <div className={styles.layout}>
+      <div className={styles.container}>
+        <PageContext.Provider
+          value={{
+            setPage,
+            currentPage,
+            setQuestionsForQuiz,
+            questionsForQuiz,
+            fakeLoad,
+            isLoading,
+            setQuestionsCount,
+            questionsCount,
+            incrementSuccessAnswersCount,
+            successAnswersCount,
+
+            resetQuiz,
+          }}
+        >
+          <Header hasCloseBtn={hasHeaderCloseBtn} onReset={resetQuiz} />
+          <main className={styles['main']}>
+            {currentPage === PAGES.welcome && <Welcome />}
+            {currentPage === PAGES.questions && <Questions />}
+            {currentPage === PAGES.result && <Result />}
+          </main>
+          <Footer />
+        </PageContext.Provider>
+      </div>
+    </div>
   );
-}
+};
 
 export default App;

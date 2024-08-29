@@ -1,9 +1,8 @@
-import Loader from '@/components/UI/Loader/Loader';
+import { Loader } from '@/components';
+import { forwardRef } from 'react';
 import styles from './Button.module.css';
 
-import { forwardRef } from 'react';
-
-const Button = forwardRef(
+export const Button = forwardRef(
   ({ children, isDisabled = false, isLoading = false, onClick }, ref) => {
     const btnContent = isLoading ? <Loader /> : children;
 
@@ -25,4 +24,4 @@ const Button = forwardRef(
   }
 );
 
-export default Button;
+Button.displayName = 'Button';

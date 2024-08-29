@@ -1,24 +1,19 @@
-import clsx from '@/utils/clsx';
-
-import LoaderDot from '@/components/Svg/LoaderDot';
+import { clsx } from '@/utils';
+import { LoaderDotSvg } from '@/components';
 import styles from './Loader.module.css';
 
-function Loader({ className = '' }) {
+export const Loader = ({ className = '' }) => {
   return (
-    <>
-      <div className={styles['loader']}>
-        <span className={clsx(styles['dot-wrapper'], className)}>
-          <LoaderDot className={styles['dot']} />
-        </span>
-        <span className={clsx(styles['dot-wrapper'], className)}>
-          <LoaderDot className={styles['dot']} />
-        </span>
-        <span className={clsx(styles['dot-wrapper'], className)}>
-          <LoaderDot className={styles['dot']} />
-        </span>
-      </div>
-    </>
+    <div className={styles['loader']}>
+      <span className={clsx(styles['dot-wrapper'], className)}>
+        <LoaderDotSvg className={styles['dot']} />
+      </span>
+      <span className={clsx(styles['dot-wrapper'], className)}>
+        <LoaderDotSvg className={styles['dot']} />
+      </span>
+      <span className={clsx(styles['dot-wrapper'], className)}>
+        <LoaderDotSvg className={styles['dot']} />
+      </span>
+    </div>
   );
-}
-
-export default Loader;
+};

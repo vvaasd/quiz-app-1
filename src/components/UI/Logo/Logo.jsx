@@ -1,6 +1,6 @@
 import styles from './Logo.module.css';
 
-function Logo({ className }) {
+export const Logo = ({ className }) => {
   return (
     <a href="/" className={styles['logo-link']}>
       <svg
@@ -102,6 +102,4 @@ function Logo({ className }) {
       </svg>
     </a>
   );
-}
-
-export default Logo;
+};

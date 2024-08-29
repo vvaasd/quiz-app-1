@@ -1,23 +1,23 @@
-# QuizApp 1 (React SPA with pseudo-routing)
+# QuizApp 1 (React SPA с псевдороутингом)
 
-Deployed [here, on netify](https://vvaasd-quiz-app-1.netlify.app) (Github Pages do not support dynamic sites)
+Развернуто на Netify [(ссылка на проект)](https://vvaasd-quiz-app-1.netlify.app), т.к. Github Pages не поддерживает динамические сайты
 
-Stack: **React**, JS, HTML, CSS.
-Builder: Vite
+Стек: **React JS**, HTML, CSS.
+Сборщик: Vite
 
-- Used hooks: useState, useEffect, useContext, useRef, useReducer and React.memo (a bit)
-- Created custom React hook useKeyDown
-- Pseudo-routing (3 pages)
-- Work with mock data
-- Responsive Pixel Perfect layout (clamp() + media queries)
-- Modular CSS
+- Использованы хуки: useState, useEffect, useContext, useRef, useReducer, функция React.memo
+- Создан кастомный React хук useKeyDown
+- Псевдороутинг (3 страницы)
+- Работа с моковыми данными для построения вопросов и ответов к квизу
+- Отзывчивая адаптивная Pixel Perfect верстка (clamp() + media queries)
+- Модульный подход CSS
+- Фейковая загрузка
+- Работа с Git (ветки, коммиты, push изменений на GitLab)
 
-App using fake loading, everything work fast without fake loading (depends on this free hosting, also the flag images are taken from the wiki - there may be a delay)
+Проект выполнен в рамках стажировки Preax согласно техническому заданию и макету.
 
-Within this project, trying to simulate real conditions, I completed technical tasks assigned to me and pushed them to remote repository (GitLab).
-
-How to run dev mode (Node required):
-- clone repository (main branch).
-Terminal commands (use it in cloned repository):
-- npm i
-- npm run dev
+Как запустить приложение в режиме разработки (требуется Node):
+1) clone repository (main branch).
+2) Use this terminal commands cloned repository:
+  - npm i
+  - npm run dev

@@ -1,80 +1,64 @@
-import pages from '@/constants/pages';
-
-import Question from '@/components/UI/Question/Question';
-import Answer from '@/components/UI/Answer/Answer';
-import Button from '@/components/UI/Button/Button';
+import { PAGES } from '@/constants';
+import { Question, Answer, Button } from '@/components';
+import { PageContext } from '@/context/PageContext';
+import { useKeyDown } from '@/hooks';
+import { useContext, useRef, useState } from 'react';
 import styles from './Questions.module.css';
 
-import { useContext, useRef, useState } from 'react';
-import { PageContext } from '@/context/context';
-import useKeyDown from '@/hooks/useKeyDown';
-
-export const Questions = ({
-  onSuccesAnswer,
-  questions,
-  questionsCount,
-  fakeLoad,
-  isPageLoading,
-}) => {
-  const { setPage } = useContext(PageContext);
-
+export const Questions = () => {
+  const {
+    setPage,
+    isLoading,
+    incrementSuccessAnswersCount,
+    questionsForQuiz,
+    fakeLoad,
+  } = useContext(PageContext);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [isAnswered, setIsAnswered] = useState(false);
-  const answersRefs = Array.from({ length: 4 }, () => useRef(null));
+
   const btnRef = useRef(null);
+  const currentQuestion = questionsForQuiz[currentQuestionIndex];
+
+  const questionsCount = questionsForQuiz.length;
+
+  const nextQuestionIndex = currentQuestionIndex + 1;
 
   let btnContent = 'Ответить';
   if (isAnswered) {
-    questionsCount === currentQuestionIndex + 1 // is last question?
+    questionsCount === nextQuestionIndex // is last question?
       ? (btnContent = 'Результат')
       : (btnContent = 'Дальше');
   }
 
-  function onAnswer() {
-    if (selectedAnswer === questions[currentQuestionIndex].correctAnswer) {
-      onSuccesAnswer();
+  const handleAnswer = () => {
+    if (selectedAnswer === currentQuestion.correctAnswer) {
+      incrementSuccessAnswersCount();
     }
 
     fakeLoad(() => {
       setIsAnswered(true);
     });
-  }
+  };
 
-  function toNextQuestion() {
-    if (currentQuestionIndex + 1 >= questionsCount) {
+  const toNextQuestion = () => {
+    if (nextQuestionIndex >= questionsCount) {
       fakeLoad(() => {
-        setPage(pages.result);
+        setPage(PAGES.result);
       });
       return;
     }
-    setCurrentQuestionIndex(currentQuestionIndex + 1);
+    setCurrentQuestionIndex(nextQuestionIndex);
     setSelectedAnswer(null);
     setIsAnswered(false);
-  }
+  };
 
   useKeyDown('Enter', () => {
     btnRef.current.click();
   });
 
-  useKeyDown('1', () => {
-    answersRefs[0].current.click();
-  });
-
-  useKeyDown('2', () => {
-    answersRefs[1].current.click();
-  });
-
-  useKeyDown('3', () => {
-    answersRefs[2].current.click();
-  });
-
-  useKeyDown('4', () => {
-    answersRefs[3].current.click();
-  });
-
   useKeyDown('Backspace', () => {
-    if (!isAnswered && !isPageLoading) {
+    if (!isAnswered && !isLoading) {
       setSelectedAnswer(null);
     }
   });
@@ -82,31 +66,28 @@ export const Questions = ({
   return (
     <>
       <Question
-        description={questions[currentQuestionIndex].question}
-        questionImg={questions[currentQuestionIndex].flag}
+        description={currentQuestion.question}
+        questionImg={currentQuestion.flag}
       />
-
       <Answer
-        answersRefs={answersRefs}
-        answers={questions[currentQuestionIndex].answers}
-        correctAnswer={questions[currentQuestionIndex]?.correctAnswer}
+        answers={currentQuestion.answers}
+        correctAnswer={currentQuestion?.correctAnswer}
         onSelect={setSelectedAnswer}
         selectedAnswer={selectedAnswer}
         isAnswered={isAnswered}
-        isDisabled={isAnswered || isPageLoading}
+        isDisabled={isAnswered || isLoading}
       />
-
       <div className={styles['button-and-count-wrapper']}>
         <Button
           ref={btnRef}
           isDisabled={!selectedAnswer}
-          isLoading={isPageLoading}
-          onClick={isAnswered ? toNextQuestion : onAnswer}
+          isLoading={isLoading}
+          onClick={isAnswered ? toNextQuestion : handleAnswer}
         >
           {btnContent}
         </Button>
         <div className={styles['count']}>
-          <span>{`${currentQuestionIndex + 1} / ${questionsCount}`}</span>
+          <span>{`${nextQuestionIndex} / ${questionsCount}`}</span>
         </div>
       </div>
     </>

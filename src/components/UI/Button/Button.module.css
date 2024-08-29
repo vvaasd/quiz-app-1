@@ -6,26 +6,26 @@
 }
 
 .button {
+  cursor: pointer;
+
   display: flex;
   justify-content: center;
   align-items: center;
   justify-self: center;
 
   background: var(--accent-color);
-  width: 270px;
-  height: 72px;
+  width: clamp(12.125rem, 7.593rem + 19.34vw, 16.875rem);
+  height: clamp(3.125rem, 1.813rem + 5.6vw, 4.5rem);
 
   border: none;
   border-radius: 10px;
 
   color: var(--light-color);
   font-weight: 700;
-  font-size: 20px;
-  line-height: 120%;
+  font-size: clamp(0.875rem, 0.517rem + 1.53vw, 1.25rem);
+  line-height: clamp(1.125rem, 0.767rem + 1.53vw, 1.5rem);
 
-  cursor: pointer;
-
-  transition: all var(--transition-duration) ease-in;
+  transition: background-color var(--transition-duration) ease-in;
 }
 
 .button:disabled {
@@ -45,20 +45,6 @@
 
   margin: 0;
   margin-top: 8px;
-}
 
-@media (max-width: 1280px) {
-  .description {
-    display: none;
-  }
-}
-
-@media (max-width: 768px) {
-  .button {
-    width: clamp(12.125rem, 7.593rem + 19.34vw, 16.875rem);
-    height: clamp(3.125rem, 1.813rem + 5.6vw, 4.5rem);
-
-    font-size: clamp(0.875rem, 0.517rem + 1.53vw, 1.25rem);
-    line-height: clamp(1.125rem, 0.767rem + 1.53vw, 1.5rem);
-  }
+  transition: color var(--transition-duration) ease-in;
 }

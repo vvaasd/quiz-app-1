@@ -1,5 +1,1 @@
-export default function clsx(...classNames) {
-  const classList = [...classNames].filter((item) => item);
-
-  return classList.join(' ');
-}
+export const clsx = (...classNames) => classNames.filter(Boolean).join(' ');
