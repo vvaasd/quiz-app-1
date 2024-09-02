@@ -18,16 +18,16 @@ Builder: Vite
 
 The project was completed as part of the Preax internship in accordance with the technical specifications and layout.
 
-## Инструкция по установке
+## Installation Guide
 
-Как запустить приложение локально (требуется [Node](https://nodejs.org/en)):
-1) Cклонируйте репозиторий в терминале при помощи команды `git clone https://github.com/vvaasd/quiz-app-1.git` (без кавычек)
-2) Перейдите в папку репозитория, используя команду в терминале: `cd quiz-app-1` 
-3) Установите зависимости, используя команду `npm install`
-4) Запустите приложение в режиме разработки: `npm run dev` (для сборки build-версии: `npm run dev`)
-5) Откроется доступ по ссылке: http://localhost:5173/ (5173 - порт, который может отличаться)
+How to run the application locally ([Node](https://nodejs.org/en) required):
+1) Clone the repository in the terminal using the command `git clone https://github.com/vvaasd/quiz-app-1.git` (without quotes)
+2) Navigate to the repository folder by using the command in the terminal: `cd quiz-app-1`
+3) Install the dependencies using the command `npm install`
+4) Start the application in development mode: `npm run dev` (for building the production version: `npm run dev`)
+5) The application will be accessible at: http://localhost:5173/ (5173 is the port number, which may vary)
 
-(!) Не используйте кавычки в терминальных командах
+(!) Do not use quotes in terminal commands
 
 ## README.md
 
