@@ -1,11 +1,13 @@
 # QuizApp 1 (React SPA with pseudo-routing)
 
+Country quiz app
+
 Deployed on netify [(link to project)](https://vvaasd-quiz-app-1.netlify.app), because Github Pages don't support dynamic sites
 
 Stack: **React JS**, HTML, CSS.
 Builder: Vite
 
-- Used hooks: useState, useEffect, useContext, useRef, useReducer, React.memo function
+- Used hooks: useState, useEffect, useContext, useRef, useReducer
 - Created custom React hook useKeyDown
 - Pseudo-routing (3 pages)
 - Work with mock data to construct questions and answers for a quiz
