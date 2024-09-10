@@ -21,9 +21,9 @@ The project was completed as part of the Preax internship in accordance with the
 ## Installation Guide
 
 How to run the application locally ([Node](https://nodejs.org/en) required):
-1) Clone the repository in the terminal using the command `git clone https://github.com/vvaasd/quiz-app-1.git` (without quotes)
-2) Navigate to the repository folder by using the command in the terminal: `cd quiz-app-1`
-3) Install the dependencies using the command `npm install`
+1) Clone the repository in the terminal using the command in the terminal `git clone https://github.com/vvaasd/quiz-app-1.git` (without quotes)
+2) Navigate to the repository folder by using the command: `cd quiz-app-1`
+3) Install the dependencies: `npm install`
 4) Start the application in development mode: `npm run dev` (for building the production version: `npm run dev`)
 5) The application will be accessible at: http://localhost:5173/ (5173 is the port number, which may vary)
 
