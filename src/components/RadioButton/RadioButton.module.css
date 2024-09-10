@@ -90,26 +90,27 @@
 }
 
 .success {
-  background-color: var(--success);
-  border-color: var(--success);
+  background-color: var(--success) !important;
+  border-color: var(--success) !important;
 }
 
 .success .text {
-  color: var(--light-color);
+  color: var(--light-color) !important;
 }
 
 .success .prefix {
-  color: var(--light-color);
+  color: var(--light-color) !important;
 }
 
 .error {
   background-color: var(--error) !important;
   border-color: var(--error) !important;
-  color: var(--light-color);
+  color: var(--light-color) !important;
 }
 
 .icon {
   width: clamp(1rem, 0.523rem + 2.04vw, 1.5rem);
   aspect-ratio: 1;
+
   color: var(--light-color);
 }
