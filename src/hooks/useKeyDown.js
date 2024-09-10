@@ -1,25 +1,27 @@
 import { useEffect } from 'react';
 
-export const useKeyDown = (
-  targetKey,
-  action,
-  options = { isForced: false }
-) => {
+const INTERACTIVE_ELEMENTS_TAG_NAMES = [
+  'BUTTON',
+  'A',
+  'TEXTAREA',
+  'SELECT',
+  // 'INPUT',
+];
+
+export const useKeyDown = (targetKey, action) => {
   useEffect(() => {
     const onKeyDown = (event) => {
-      setTimeout(() => {
-        const activeElement = document.activeElement;
-        const isSomethingActive =
-          activeElement && activeElement.tagName.toLowerCase() !== 'body';
-        const isThatKey = event.code === targetKey;
+      if (event.code === targetKey) {
+        const activeElementTagName = document.activeElement.tagName;
 
-        if (!isThatKey || (isSomethingActive && !options.isForced)) {
+        const isInteractiveElement =
+          INTERACTIVE_ELEMENTS_TAG_NAMES.includes(activeElementTagName);
+
+        if (isInteractiveElement) {
           return;
         }
-
-        event.preventDefault();
         action();
-      }, 0);
+      }
     };
     document.addEventListener('keydown', onKeyDown);
     return () => {

@@ -23,7 +23,7 @@ export const Welcome = () => {
   const startQuiz = () => {
     fakeLoad(() => {
       const generatedQuiz = generateQuizFrom(QUIZ_QUESTIONS_DATA, counterValue);
-      console.log(generatedQuiz);
+
       setQuestionsForQuiz(generatedQuiz);
       setQuestionsCount(generatedQuiz.length);
       setPage(PAGES.questions);

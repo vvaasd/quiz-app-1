@@ -61,15 +61,11 @@ export const Questions = () => {
     isAnswered ? toNextQuestion() : handleAnswer();
   };
 
-  useKeyDown(
-    'Enter',
-    () => {
-      if (!isBtnDisabled) {
-        handleBtnClick();
-      }
-    },
-    { isForced: true }
-  );
+  useKeyDown('Enter', () => {
+    if (!isBtnDisabled) {
+      handleBtnClick();
+    }
+  });
 
   useKeyDown('Backspace', () => {
     if (!isBtnDisabled && !isAnswered) {
