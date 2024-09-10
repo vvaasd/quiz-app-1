@@ -8,14 +8,14 @@
   gap: clamp(0.75rem, 0.511rem + 1.02vw, 1rem);
 }
 
-.dot-wrapper {
+.dot {
   position: relative;
 
   width: clamp(0.625rem, 0.386rem + 1.02vw, 0.875rem);
   height: clamp(0.875rem, 0.756rem + 0.51vw, 1rem);
 }
 
-.dot {
+.dotSvg {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -23,25 +23,23 @@
   width: clamp(0.625rem, 0.386rem + 1.02vw, 0.875rem);
   height: clamp(0.625rem, 0.386rem + 1.02vw, 0.875rem);
 
-  animation: dotDance;
+  animation-name: dotDance;
   animation-duration: 0.6s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
 
-.loader .dot-wrapper:nth-child(2n) .dot {
+.loader .dot:nth-child(2n) .dotSvg {
   animation-delay: 0.2s;
 }
 
-.loader .dot-wrapper:nth-child(3n) .dot {
+.loader .dot:nth-child(3n) .dotSvg {
   animation-delay: 0.4s;
 }
 
 @keyframes dotDance {
-  0% {
-    bottom: 0;
-  }
+  0%,
   60% {
     bottom: 0;
   }

@@ -4,7 +4,7 @@ import { PAGES, MAX_QUESTIONS_COUNT } from '@/constants';
 import { generateQuizFrom } from '@/utils';
 import { Button, Counter } from '@/components';
 import { PageContext } from '@/context/PageContext';
-import { useContext, useRef, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useKeyDown } from '@/hooks';
 import styles from './Welcome.module.css';
 
@@ -17,12 +17,13 @@ export const Welcome = () => {
     setQuestionsCount,
   } = useContext(PageContext);
   const [counterValue, setCounterValue] = useState(1);
-  const btnRef = useRef(null);
+
+  const isBtnDisabled = !counterValue || isLoading;
 
   const startQuiz = () => {
     fakeLoad(() => {
       const generatedQuiz = generateQuizFrom(QUIZ_QUESTIONS_DATA, counterValue);
-
+      console.log(generatedQuiz);
       setQuestionsForQuiz(generatedQuiz);
       setQuestionsCount(generatedQuiz.length);
       setPage(PAGES.questions);
@@ -30,14 +31,16 @@ export const Welcome = () => {
   };
 
   useKeyDown('Enter', () => {
-    btnRef.current.click();
+    if (!isBtnDisabled) {
+      startQuiz();
+    }
   });
 
   return (
     <>
-      <div className={styles['header']}>
-        <h2 className={styles['title']}>Добро пожаловать</h2>
-        <p className={styles['description']}>
+      <div className={styles.header}>
+        <h2 className={styles.title}>Добро пожаловать</h2>
+        <p className={styles.description}>
           на викторину по странам
           <br />и столицам!
         </p>
@@ -48,15 +51,17 @@ export const Welcome = () => {
         onChange={setCounterValue}
         isDisabled={isLoading}
       />
-      <Button
-        ref={btnRef}
-        onClick={startQuiz}
-        isDisabled={!counterValue}
-        isLoading={isLoading}
-      >
-        Начать
-      </Button>
-      <img src={welcomeImg} alt="welcome" className={styles['img']} />
+      <div className={styles.btnWrapper}>
+        <Button
+          onClick={startQuiz}
+          isDisabled={isBtnDisabled}
+          isLoading={isLoading}
+          withTip
+        >
+          Начать
+        </Button>
+      </div>
+      <img src={welcomeImg} alt="welcome" className={styles.img} />
     </>
   );
 };

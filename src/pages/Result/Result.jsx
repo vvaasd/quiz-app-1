@@ -1,14 +1,13 @@
 import { getEndingByNumber } from '@/utils';
-import { Button } from '@/components/Button/Button';
+import { Button } from '@/components';
 import { PageContext } from '@/context/PageContext';
 import { useKeyDown } from '@/hooks';
-import { useContext, useRef } from 'react';
+import { useContext } from 'react';
 import styles from './Result.module.css';
 
 export const Result = () => {
   const { resetQuiz, questionsCount, successAnswersCount } =
     useContext(PageContext);
-  const btnRef = useRef(null);
   const errorAnswersCount = questionsCount - successAnswersCount;
   const questionWord = getEndingByNumber(
     successAnswersCount,
@@ -53,20 +52,20 @@ export const Result = () => {
     );
   }
 
-  useKeyDown('Enter', () => {
-    btnRef.current.click();
-  });
+  useKeyDown('Enter', resetQuiz);
 
   return (
     <>
-      <div className={styles['img']}></div>
-      <div className={styles['header']}>
-        <h2 className={styles['title']}>Результат</h2>
-        <p className={styles['description']}>{resultText}</p>
+      <div className={styles.img}></div>
+      <div className={styles.header}>
+        <h2 className={styles.title}>Результат</h2>
+        <p className={styles.description}>{resultText}</p>
       </div>
-      <Button ref={btnRef} onClick={resetQuiz}>
-        Попробовать еще
-      </Button>
+      <div className={styles.btnWrapper}>
+        <Button onClick={resetQuiz} withTip>
+          Попробовать еще
+        </Button>
+      </div>
     </>
   );
 };

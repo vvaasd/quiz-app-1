@@ -1,4 +1,8 @@
-.button-and-count-wrapper {
+.btnWrapper {
+  text-align: center;
+}
+
+.buttonAndCount {
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -1,27 +1,25 @@
 import { Loader } from '@/components';
-import { forwardRef } from 'react';
+import { clsx } from '@/utils';
 import styles from './Button.module.css';
 
-export const Button = forwardRef(
-  ({ children, isDisabled = false, isLoading = false, onClick }, ref) => {
-    const btnContent = isLoading ? <Loader /> : children;
+export const Button = (props) => {
+  const { className, isDisabled, isLoading, children, onClick, withTip } =
+    props;
 
-    return (
-      <div className={styles['wrapper']}>
-        <button
-          ref={ref}
-          className={styles['button']}
-          disabled={isDisabled || isLoading}
-          onClick={onClick}
-        >
-          {btnContent}
-        </button>
-        <p className={styles['description']}>
+  return (
+    <>
+      <button
+        className={clsx(styles.button, className)}
+        disabled={isDisabled || isLoading}
+        onClick={onClick}
+      >
+        {isLoading ? <Loader /> : children}
+      </button>
+      {withTip && (
+        <p className={styles.tip}>
           или нажми <strong>Enter &crarr;</strong>
         </p>
-      </div>
-    );
-  }
-);
-
-Button.displayName = 'Button';
+      )}
+    </>
+  );
+};

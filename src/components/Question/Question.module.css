@@ -1,13 +1,10 @@
-.question {
-  margin: 0;
-}
-
-.flag {
+.img {
   display: block;
   width: clamp(4.5rem, 3.427rem + 4.58vw, 5.625rem);
   height: clamp(3rem, 2.284rem + 3.05vw, 3.75rem);
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   object-fit: cover;
+  pointer-events: none;
 }
 
 .description {

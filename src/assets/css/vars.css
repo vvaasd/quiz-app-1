@@ -9,5 +9,7 @@
   --accent-color: #ff9c46;
   --accent-dim-color: #edd0b6;
 
+  --border-radius: 10px;
+
   --transition-duration: 0.1s;
 }

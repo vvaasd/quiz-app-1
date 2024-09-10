@@ -1,19 +1,17 @@
-.info {
+.text {
   color: var(--light-color);
   font-size: clamp(0.625rem, 0.386rem + 1.02vw, 0.875rem);
   line-height: clamp(0.75rem, 0.511rem + 1.02vw, 1rem);
-
-  margin: 0;
 }
 
-.info-link {
+.link {
   color: var(--light-color);
 
   text-underline-offset: 4px;
 }
 
 @media (max-width: 768px) {
-  .info-link {
+  .link {
     color: var(--light-color);
 
     text-underline-offset: 3px;

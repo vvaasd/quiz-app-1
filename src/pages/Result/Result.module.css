@@ -34,3 +34,8 @@
   font-weight: 700;
   color: var(--error);
 }
+
+.btnWrapper {
+  margin-inline: auto;
+  text-align: center;
+}

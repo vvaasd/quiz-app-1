@@ -1,15 +1,14 @@
-import { memo } from 'react';
 import styles from './Question.module.css';
 
-export const Question = memo(({ description, questionImg }) => {
+export const Question = (props) => {
+  const { description, questionImg } = props;
+
   return (
-    <figure className={styles['question']}>
-      <img src={questionImg} alt="flag" className={styles['flag']} />
+    <figure>
+      <img src={questionImg} alt="flag" className={styles.img} />
       <figcaption>
-        <p className={styles['description']}>{description}</p>
+        <p className={styles.description}>{description}</p>
       </figcaption>
     </figure>
   );
-});
-
-Question.displayName = 'Question';
+};

@@ -2,8 +2,14 @@ import { PAGES } from '@/constants';
 import { Question, Answer, Button } from '@/components';
 import { PageContext } from '@/context/PageContext';
 import { useKeyDown } from '@/hooks';
-import { useContext, useRef, useState } from 'react';
+import { useContext, useState } from 'react';
 import styles from './Questions.module.css';
+
+const BUTTON_TEXT = {
+  notAnswered: 'Ответить',
+  next: 'Дальше',
+  result: 'Результат',
+};
 
 export const Questions = () => {
   const {
@@ -17,18 +23,16 @@ export const Questions = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [isAnswered, setIsAnswered] = useState(false);
 
-  const btnRef = useRef(null);
   const currentQuestion = questionsForQuiz[currentQuestionIndex];
-
   const questionsCount = questionsForQuiz.length;
-
   const nextQuestionIndex = currentQuestionIndex + 1;
+  const isBtnDisabled = !selectedAnswer || isLoading;
 
-  let btnContent = 'Ответить';
+  let btnContent = BUTTON_TEXT.notAnswered;
   if (isAnswered) {
     questionsCount === nextQuestionIndex // is last question?
-      ? (btnContent = 'Результат')
-      : (btnContent = 'Дальше');
+      ? (btnContent = BUTTON_TEXT.result)
+      : (btnContent = BUTTON_TEXT.next);
   }
 
   const handleAnswer = () => {
@@ -53,12 +57,22 @@ export const Questions = () => {
     setIsAnswered(false);
   };
 
-  useKeyDown('Enter', () => {
-    btnRef.current.click();
-  });
+  const handleBtnClick = () => {
+    isAnswered ? toNextQuestion() : handleAnswer();
+  };
+
+  useKeyDown(
+    'Enter',
+    () => {
+      if (!isBtnDisabled) {
+        handleBtnClick();
+      }
+    },
+    { isForced: true }
+  );
 
   useKeyDown('Backspace', () => {
-    if (!isAnswered && !isLoading) {
+    if (!isBtnDisabled && !isAnswered) {
       setSelectedAnswer(null);
     }
   });
@@ -71,23 +85,25 @@ export const Questions = () => {
       />
       <Answer
         answers={currentQuestion.answers}
-        correctAnswer={currentQuestion?.correctAnswer}
+        correctAnswer={currentQuestion.correctAnswer}
         onSelect={setSelectedAnswer}
         selectedAnswer={selectedAnswer}
         isAnswered={isAnswered}
         isDisabled={isAnswered || isLoading}
       />
-      <div className={styles['button-and-count-wrapper']}>
-        <Button
-          ref={btnRef}
-          isDisabled={!selectedAnswer}
-          isLoading={isLoading}
-          onClick={isAnswered ? toNextQuestion : handleAnswer}
-        >
-          {btnContent}
-        </Button>
-        <div className={styles['count']}>
-          <span>{`${nextQuestionIndex} / ${questionsCount}`}</span>
+      <div className={styles.buttonAndCount}>
+        <div className={styles.btnWrapper}>
+          <Button
+            isDisabled={isBtnDisabled}
+            isLoading={isLoading}
+            onClick={handleBtnClick}
+            withTip
+          >
+            {btnContent}
+          </Button>
+        </div>
+        <div className={styles.count}>
+          {`${nextQuestionIndex} / ${questionsCount}`}
         </div>
       </div>
     </>

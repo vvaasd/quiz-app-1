@@ -1,38 +1,48 @@
-.radio-input {
+.input {
   position: absolute;
   opacity: 0;
   z-index: -1;
-  display: none;
+  width: 0;
+  height: 0;
+  pointer-events: none;
 }
 
-.radio-input:not(:disabled):hover + .label {
+.input:not(:disabled):hover + .label {
   background-color: var(--accent-color);
   border-color: var(--accent-color);
 }
 
-.radio-input:checked + .label {
+.input:checked + .label {
   background-color: var(--accent-color);
   border-color: var(--accent-color);
 }
 
-.radio-input:checked + .label > .label-text {
+.input:checked + .label > .text {
   color: var(--light-color);
 }
 
-.radio-input:checked + .label > .label-index {
+.input:checked + .label > .prefix {
   color: var(--light-color);
 }
 
-.radio-input:not(:disabled):hover + .label > .label-text {
+.input:not(:disabled):hover + .label > .text {
   color: var(--light-color);
 }
 
-.radio-input:not(:disabled):hover + .label > .label-index {
+.input:not(:disabled):hover + .label > .prefix {
   color: var(--light-color);
 }
 
-.radio-input:disabled + .label::before {
+.input:disabled + .label::before {
   cursor: auto;
+}
+
+.input:focus + .label {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+.input:disabled {
+  opacity: 30%;
 }
 
 .label {
@@ -41,12 +51,10 @@
   align-items: center;
   gap: clamp(0.5rem, 0.261rem + 1.02vw, 0.75rem);
 
-  background: none;
-
   box-sizing: border-box;
   border: clamp(0.125rem, 0.006rem + 0.51vw, 0.25rem) solid var(--dark-color);
 
-  border-radius: 10px;
+  border-radius: var(--border-radius);
 
   transition: border var(--transition-duration) ease-in;
 
@@ -66,15 +74,15 @@
   height: 100%;
 }
 
-.label-index {
+.prefix {
   font-weight: 700;
 }
-.label-text {
+.text {
   flex-grow: 1;
 }
 
-.label-index,
-.label-text {
+.prefix,
+.text {
   font-size: clamp(0.875rem, 0.517rem + 1.53vw, 1.25rem);
   line-height: clamp(1.125rem, 0.767rem + 1.53vw, 1.5rem);
 
@@ -82,30 +90,26 @@
 }
 
 .success {
-  background-color: var(--success) !important;
-  border-color: var(--success) !important;
+  background-color: var(--success);
+  border-color: var(--success);
 }
 
-.success .label-text {
-  color: var(--light-color) !important;
+.success .text {
+  color: var(--light-color);
 }
 
-.success .label-index {
-  color: var(--light-color) !important;
+.success .prefix {
+  color: var(--light-color);
 }
 
 .error {
   background-color: var(--error) !important;
   border-color: var(--error) !important;
-  color: var(--light-color) !important;
+  color: var(--light-color);
 }
 
-.result-icon {
+.icon {
   width: clamp(1rem, 0.523rem + 2.04vw, 1.5rem);
-  height: clamp(1rem, 0.523rem + 2.04vw, 1.5rem);
-}
-
-.result-icon svg {
-  width: 100%;
-  height: 100%;
+  aspect-ratio: 1;
+  color: var(--light-color);
 }

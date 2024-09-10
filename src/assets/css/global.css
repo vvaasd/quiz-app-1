@@ -1,17 +1,29 @@
 html,
 body {
-  font-family: 'Inter', sans-serif;
   width: 100%;
   height: 100%;
 }
 
-p {
-  font-weight: 500;
-  font-size: 28px;
-  line-height: 114%;
-  color: var(--dark-color);
+body {
+  font-family: 'Inter', sans-serif;
+}
 
-  margin: 0;
+svg *[fill],
+svg *[stroke] {
+  transition: color var(--transition-duration) ease-in;
+}
+
+svg *[fill] {
+  fill: currentColor;
+}
+
+svg *[stroke] {
+  stroke: currentColor;
+}
+
+svg {
+  height: inherit;
+  width: inherit;
 }
 
 h2 {
@@ -21,5 +33,41 @@ h2 {
   line-height: 122%;
   color: var(--dark-color);
 
+  margin-block: 0;
+}
+
+p {
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 114%;
+  color: var(--dark-color);
+
+  margin-block: 0;
+}
+
+button {
+  padding-inline: 0;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: auto;
+}
+
+input {
+  padding: 0;
+}
+
+ul,
+ol {
+  padding-left: 0;
+  margin-block: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+figure {
   margin: 0;
 }

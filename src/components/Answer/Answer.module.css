@@ -1,4 +1,4 @@
-.answers-wrapper {
+.list {
   display: flex;
   flex-direction: column;
   gap: clamp(0.5rem, 0.023rem + 2.04vw, 1rem);

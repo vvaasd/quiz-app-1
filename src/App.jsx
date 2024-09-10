@@ -58,7 +58,7 @@ export const App = () => {
           }}
         >
           <Header hasCloseBtn={hasHeaderCloseBtn} onReset={resetQuiz} />
-          <main className={styles['main']}>
+          <main className={styles.main}>
             {currentPage === PAGES.welcome && <Welcome />}
             {currentPage === PAGES.questions && <Questions />}
             {currentPage === PAGES.result && <Result />}

@@ -2,37 +2,24 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: clamp(2.5rem, 2.023rem + 2.04vw, 3rem);
 }
 
 .logo {
-  width: clamp(9.125rem, 7.217rem + 8.14vw, 11.125rem);
   height: clamp(2.5rem, 2.023rem + 2.04vw, 3rem);
 }
 
-.close-btn {
-  background: none;
+.closeBtn {
   border: none;
-  cursor: pointer;
+  background-color: transparent;
 
-  padding: 0;
+  color: var(--light-color);
 }
 
-.close-btn,
-.close-svg {
-  width: clamp(1.5rem, 0.546rem + 4.07vw, 2.5rem);
+.closeBtn {
   height: clamp(1.5rem, 0.546rem + 4.07vw, 2.5rem);
+  aspect-ratio: 1;
 }
 
-.close-btn:hover .close-svg > circle {
-  transition: stroke var(--transition-duration) ease-in;
-  stroke: var(--dark-color);
-}
-
-.close-btn:hover .close-svg > path {
-  fill: var(--dark-color);
-  stroke: var(--dark-color);
-
-  transition: fill var(--transition-duration) ease-in,
-    stroke var(--transition-duration) ease-in;
+.closeBtn:hover .closeSvg {
+  color: var(--dark-color);
 }
